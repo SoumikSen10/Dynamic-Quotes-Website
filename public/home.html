@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{>header}}
+<!-- This syntax is for handlebars -->
+<!-- adding head part from header.hbs -->
+<!-- In React we call it components and in express we call it partials -->
+<!-- <div id="weather-icon">
+    <i class="fa-solid fa-sun" style="color: rgb(228, 228, 119)"></i>
+</div> -->
+
+<body>
+    <div class="container">
+        <div class="inner" data-aos="zoom-in">
+            <div class="box">
+                <div class="number">
+                    <button id="tweetMe"><i class="fa-brands fa-twitter"></i></button>
+                </div>
+                <div class="start-quote"></div>
+                <div class="quotes">dkvndlk</div>
+                <div class="author"> ~ &nbsp kfnf</div>
+                <button class="btn1">
+                    <div class="newQ">New Quotes</div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        const quotes = document.getElementsByClassName("quotes")[0];
+        const author = document.getElementsByClassName("author")[0];
+        const btn1 = document.getElementsByClassName("btn1")[0];
+        const tweetMe = document.getElementById("tweetMe");
+        console.log(quotes)
+        let realData = "";
+        let quotesData = "";
+
+        const tweetNow = () => {
+            let tweetPost = `https://twitter.com/intent/tweet?text=${quotesData.text} ${quotesData.author}`;
+            window.open(tweetPost);
+        };
+
+        const getNewQuotes = (data) => {
+
+            let rNum = Math.floor(Math.random() * 20);
+            // console.log(data)
+            quotesData = data[rNum];
+            console.log(quotesData, typeof(quotesData))
+            quotes.innerText = quotesData.text;
+
+            quotesData.author === null ?
+                (author.innerText = "Unknown") :
+                (author.innerText = quotesData.author);
+        };
+
+        const getQuotes = async() => {
+            const api = "https://type.fit/api/quotes";
+            // console.log(api)
+
+            try {
+                let data = await fetch(api);
+                realData = await data.json()
+                getNewQuotes(realData);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        tweetMe.addEventListener('click', tweetNow);
+        btn1.addEventListener('click', getQuotes)
+        getQuotes();
+    </script>
+</body>
+{{>footer}}
+
+</html>
