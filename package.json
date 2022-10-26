@@ -1,16 +1,18 @@
 {
-  "name": "servedynamic_sites",
-  "version": "1.0.0",
-  "description": "Serving a dynamic website",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Soumik Sen",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.1",
-    "hbs": "^4.2.0",
-    "requests": "^0.3.0"
-  }
+    "name": "servedynamic_sites",
+    "version": "1.0.0",
+    "description": "Serving a dynamic website",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon index.js"
+    },
+    "author": "Soumik Sen",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.1",
+        "hbs": "^4.2.0",
+        "heroku": "^7.65.0",
+        "requests": "^0.3.0"
+    }
 }
